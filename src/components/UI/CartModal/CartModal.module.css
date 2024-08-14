@@ -1,0 +1,118 @@
+/* Container del modal */
+.modalContainer {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.92);
+    border: solid 1px rgba(116, 113, 113, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 99999;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  /* Ajuste para pantallas más grandes */
+  @media (min-width: 768px) {
+    .modalContainer {
+      min-height: 600px;
+      min-width: 500px;
+      right: 20px;
+      top: 20px;
+    }
+  }
+  
+  /* Botón de cerrar modal */
+  .modalCloseButton {
+    all: unset;
+    height: 20px;
+    margin: 10px;
+    position: absolute;
+    right: -8px;
+    top: -6px;
+    width: 15px;
+    cursor: pointer;
+  }
+  
+  /* Tabla dentro del modal */
+  .modalTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .modalTable th,
+  .modalTable td {
+    border: 1px solid #EDB00F;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .modalTable th {
+    background-color: #EDB00F;
+  }
+  
+  .modalTable button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  /* Botón de eliminar */
+  .modalButtonRemove {
+    color: #d9534f;
+    font-size: 1.2rem;
+  }
+  
+  /* Botón de añadir */
+  .modalButtonAdd {
+    color: #5bc0de;
+    font-size: 1.2rem;
+  }
+  
+  /* Contenedor del total */
+  .modalTotalContainer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .modalTotalContainer h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Contenedor del botón de checkout */
+  .modalButtonContainer {
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .modalButtonContainer button {
+    all: unset;
+    background-color: #EDB00F;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 15px 10px;
+    text-align: center;
+    width: 95%;
+  }
+  
+  .modalButtonContainer button:hover {
+    background-color: #d8a905;
+  }
+  
+  .modalButtonContainer button:active {
+    background-color: #c79400;
+  }
+  
