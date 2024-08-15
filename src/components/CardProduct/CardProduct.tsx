@@ -8,18 +8,25 @@ interface Props{
   product: Product; // es sin el [] porquie recibimos un producto, no todos.
 }
 
+interface CarProduct{
+  id: number;
+  name: string;
+  image: string;
+  quantity: number;
+}
+
 export const CardProduct: FC<Props> = ({product}) => {
 
   const {dispatch} = useContext(CartContext)
 
-  const item = {
-    id: product.tail,
+  const item: CarProduct = {
+    id: product.id,
     name: product.name,
     image: product.image,
     quantity: 1
   }
 
-  const addToCart = (item) => {
+  const addToCart = (item: CarProduct) => {
     dispatch({
       type: 'ADD_TO_CART',
       payload: item
