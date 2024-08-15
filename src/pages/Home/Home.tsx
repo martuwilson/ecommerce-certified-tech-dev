@@ -7,7 +7,7 @@ export const Home = () => {
 
   const [products, setProducts] = useState([])
 
-  const getProducts = async () => {
+  /* const getProducts = async () => {
     try {
       const response = await fetch('http://localhost:3000/products')
 
@@ -17,7 +17,7 @@ export const Home = () => {
     } catch (error) {
       console.error(error)
     }
-  }
+  } */
 
   useEffect(() => {
     getProducts()
