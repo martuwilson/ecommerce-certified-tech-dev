@@ -3,10 +3,12 @@ import Cart from '../../assets/cart.svg';
 import styles from './Navbar.module.css';
 import { useState } from 'react';
 import { CartModal } from './CartModal';
+import useCartContext from '../../hook/useCartContext';
 
 export const Navbar = () => {
 
     const [showCartModal, setShowCartModal] = useState(false)
+    const {state: {cartItems}} = useCartContext()
 
 
     const handleShowCartModal = () => {
@@ -25,7 +27,7 @@ export const Navbar = () => {
            </div>
 
            <div className={styles.navbarCartContainer}>
-                <p className={styles.navbarTextAmount}>2</p>
+                <p className={styles.navbarTextAmount}>{cartItems.length}</p>
                 <img src={Cart} alt="cart" onClick={handleShowCartModal}/>
            </div>
            {
