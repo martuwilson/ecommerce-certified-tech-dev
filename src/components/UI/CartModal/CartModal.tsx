@@ -1,12 +1,26 @@
 import styles from './CartModal.module.css'
 import Close from '../../../assets/close.svg'
 import { FC } from 'react';
+import useCartContext from '../../../hook/useCartContext';
+import { CartProduct } from '../../../interfaces';
 
 interface Props {
     handleShowCartModal: () => void;
 }
 
 export const CartModal:FC<Props> = ({handleShowCartModal}) => {
+
+
+    const { state:{cartItems}, dispatch } = useCartContext(); 
+    
+    const handleRemoveItem = (item: CartProduct) => {
+        dispatch({type: 'REMOVE_FROM_CART', payload: item})
+    }
+
+    const handleAddItem = (item: CartProduct) => {
+        dispatch({type: 'ADD_TO_CART', payload: item})
+    }
+
   return (
     <div className={styles.modalContainer}>
         <button className={styles.modalCloseButton} onClick={handleShowCartModal}>
@@ -22,24 +36,38 @@ export const CartModal:FC<Props> = ({handleShowCartModal}) => {
             </tr>
             </thead>
             <tbody>
-                <tr>
+                {
+                    cartItems.map(item => (
+                        <tr key={item.id}>
                     <td>
-                        name
+                        <p>
+                            {item.name}
+                        </p>
                     </td>
                     <td>
-                        <button className={styles.modalButtonRemove}>
+                        <button className={styles.modalButtonRemove}
+                        onClick={
+                            () => handleRemoveItem(item)
+                        }
+                        >
                             -1
                         </button>
                     </td>
                     <td>
-                        12
+                        <p>
+                            {item.quantity}
+                        </p>
                     </td>
                     <td>
-                        <button className={styles.modalButtonAdd}>
+                        <button className={styles.modalButtonAdd} onClick={
+                            () => handleAddItem(item)
+                        }>
                             +1
                         </button>
                     </td>
                 </tr>
+                    ))
+                }
             </tbody>
         </table>
         <div className={styles.modalTotalContainer}>
