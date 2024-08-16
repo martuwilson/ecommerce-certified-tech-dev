@@ -2,6 +2,7 @@ import { FC } from 'react'
 import styles from './Card.module.css'
 import { CartProduct, Product } from '../../interfaces'
 import useCartContext from '../../hook/useCartContext';
+import { toast } from 'sonner';
 
 
 interface Props{
@@ -26,6 +27,10 @@ export const CardProduct: FC<Props> = ({product}) => {
     dispatch({
       type: 'ADD_TO_CART',
       payload: item
+    })
+    toast.success('Product added to cart', {
+      position: 'bottom-right',
+      duration: 5000
     })
   }
 

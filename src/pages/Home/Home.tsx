@@ -4,6 +4,8 @@ import styles from './Home.module.css'
 import { CardProduct } from "../../components/CardProduct"
 import { getProducts } from "../../service"
 import { Product } from "../../interfaces"
+import { Toaster } from "sonner"
+
 
 export const Home = () => {
 
@@ -26,6 +28,7 @@ const [isLoading, setIsLoading] = useState(true)
   return (
     <>
       <Hero />
+      <Toaster richColors/>
       {
         isLoading && <p>Loading...</p>
       }
