@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 import styles from './Card.module.css'
 import { CartProduct, Product } from '../../interfaces'
 import useCartContext from '../../hook/useCartContext';
@@ -18,7 +18,8 @@ export const CardProduct: FC<Props> = ({product}) => {
     id: product.id,
     name: product.name,
     image: product.image,
-    quantity: 1
+    price: product.price,
+    quantity: 1,
   }
 
   const addToCart = (item: CartProduct) => {
