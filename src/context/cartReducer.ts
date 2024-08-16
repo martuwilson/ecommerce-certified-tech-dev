@@ -1,8 +1,19 @@
-export const initialState = {
+import { CartProduct } from "../interfaces";
+
+export interface CartState {
+    cartItems: CartProduct[];
+}
+
+export const initialState: CartState = {
     cartItems: [],
 }
 
-export const cartReducer = (state, action) => {
+export interface CartAction {
+    type: "ADD_TO_CART" | "REMOVE_FROM_CART";
+    payload: CartProduct;
+}
+
+export const cartReducer = (state:CartState, action: CartAction): CartState => {
     switch (action.type) {
         case "ADD_TO_CART":
             const { id } = action.payload;
@@ -30,20 +41,22 @@ export const cartReducer = (state, action) => {
             // Validar si el ítem existe en el carrito
             const itemToRemove = state.cartItems.find((item) => item.id === removeItemId);
 
-            if (itemToRemove.quantity === 1) {
-                return {
-                    ...state,
-                    cartItems: state.cartItems.filter((item) => item.id !== removeItemId),
-                };
-            } else {
-                return {
-                    ...state,
-                    cartItems: state.cartItems.map((item) => 
-                        item.id === removeItemId ? { ...itemToRemove, quantity: itemToRemove.quantity - 1 } : item
-                    ),
-                };
-            }
-
+                if(itemToRemove){
+                    if (itemToRemove.quantity === 1) {
+                        return {
+                            ...state,
+                            cartItems: state.cartItems.filter((item) => item.id !== removeItemId),
+                        };
+                    } else {
+                        return {
+                            ...state,
+                            cartItems: state.cartItems.map((item) => 
+                                item.id === removeItemId ? { ...itemToRemove, quantity: itemToRemove.quantity - 1 } : item
+                            ),
+                        };
+                    }
+                }
+                return state;
         default:
             return state;
     }
