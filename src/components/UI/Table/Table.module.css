@@ -35,6 +35,14 @@
       text-align: center;
       width: 95%;
   }
+
+.modalTable tbody tr td:first-child {
+    width: 10%; 
+}
+.modalImage {
+  width: 50px; 
+  height: auto;
+}
   
   .modalButtonRemove{
     all: unset;

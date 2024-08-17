@@ -27,6 +27,7 @@ export const Table = () => {
     <table className={styles.modalTable}>
             <thead>
             <tr>
+                <th>Image</th>
                 <th>Product</th>
                 <th>Delete</th>
                 <th>Quantity</th>
@@ -37,6 +38,9 @@ export const Table = () => {
                 {
                     cartItems.map(item => (
                         <tr key={item.id}>
+                            <td>
+                                <img src={item.image} alt={item.name} className={styles.modalImage}/>
+                            </td>
                     <td>
                         <p>
                             {item.name}
