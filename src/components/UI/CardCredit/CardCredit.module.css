@@ -48,5 +48,9 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: 200px;
-	margin-top: 20px;
+  margin-top: 20px;
+}
+.buyButton:hover{
+    background-color: #ddb347;
+    transition: 0.3s ease-in-out;
 }
