@@ -9,13 +9,13 @@ export const initialState: CartState = {
 }
 
 export interface CartAction {
-    type: "ADD_TO_CART" | "REMOVE_FROM_CART";
+    type: "ADD_TO_CART" | "REMOVE_FROM_CART" | "CLEAR_CART";
     payload: CartProduct;
 }
 
 export const cartReducer = (state:CartState, action: CartAction): CartState => {
     switch (action.type) {
-        case "ADD_TO_CART":
+        case "ADD_TO_CART":{
             const { id } = action.payload;
 
             // Validar si es el primer ítem del carrito o agregar uno más a algo que ya existe
@@ -34,8 +34,10 @@ export const cartReducer = (state:CartState, action: CartAction): CartState => {
                     cartItems: [...state.cartItems, action.payload],
                 };
             }
+        }
         
-        case "REMOVE_FROM_CART":
+        case "REMOVE_FROM_CART":{
+            
             const { id: removeItemId } = action.payload;
             
             // Validar si el ítem existe en el carrito
@@ -51,12 +53,21 @@ export const cartReducer = (state:CartState, action: CartAction): CartState => {
                         return {
                             ...state,
                             cartItems: state.cartItems.map((item) => 
-                                item.id === removeItemId ? { ...itemToRemove, quantity: itemToRemove.quantity - 1 } : item
-                            ),
+                                item.id === removeItemId ? { ...itemToRemove, quantity: itemToRemove.quantity - 1 } : item),
                         };
                     }
                 }
                 return state;
+        
+        }
+        
+        case "CLEAR_CART":{
+            return {
+                ...state,
+                cartItems: [],
+            }
+        }
+        
         default:
             return state;
     }
