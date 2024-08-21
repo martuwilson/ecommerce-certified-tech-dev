@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import styles from './Dashboard.module.css'
 import { useEffect, useState } from 'react'
 import { Product } from '../../interfaces/product';
+import { useMutation } from 'react-query';
+import { createProduct } from '../../service';
 
 const Dashboard = () => {
 
@@ -41,8 +43,13 @@ const Dashboard = () => {
         })
     }
 
+    const mutation = useMutation((newProduct: Product) =>{
+        return createProduct(newProduct)
+    })
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        mutation.mutate(product)
     }
 
   return (
