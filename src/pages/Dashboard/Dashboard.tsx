@@ -1,35 +1,66 @@
 import { useNavigate } from 'react-router-dom'
 import styles from './Dashboard.module.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Product } from '../../interfaces/product';
 
 const Dashboard = () => {
 
-const navigate = useNavigate()
+    const [product, setProduct] = useState({
+        amiiboSeries: '',
+        character: '',
+        gameSeries: '',
+        head: '',
+        image: '',
+        name: '',
+        releaseDate: '',
+        tail: '',
+        type: '',
+        price: 0
+    })
 
-useEffect(() => {
-    const userDataLogin = localStorage.getItem('userLogin')
+    const navigate = useNavigate()
 
-    if(!userDataLogin){
+    useEffect(() => {
+        const userDataLogin = localStorage.getItem('userLogin')
+
+        if(!userDataLogin){
+            navigate('/login')
+        }
+    }, [])
+
+    const handleLogOut = () => {
+        localStorage.removeItem('userLogin')
         navigate('/login')
     }
-}, [])
+
+    const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target
+        setProduct({
+            ...product,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+    }
 
   return (
     <div className={styles.container}>
         <div>
             <h1>Dashboard</h1>
-            <button>Logout</button>
+            <button onClick={handleLogOut}>Logout</button>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className={styles.formControlLogin}>
                 <label htmlFor="amiiboSeries">Amiibo Series</label>
                 <input
                     type="text"
                     id="amiiboSeries"
                     name="amiiboSeries"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.amiiboSeries}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
@@ -39,8 +70,8 @@ useEffect(() => {
                     type="text"
                     id="character"
                     name="character"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.character}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
@@ -50,8 +81,8 @@ useEffect(() => {
                     type="text"
                     id="gameSeries"
                     name="gameSeries"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.gameSeries}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
@@ -61,8 +92,8 @@ useEffect(() => {
                     type="text"
                     id="head"
                     name="head"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.head}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
@@ -72,8 +103,8 @@ useEffect(() => {
                     type="url"
                     id="image"
                     name="image"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.image}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
@@ -83,19 +114,19 @@ useEffect(() => {
                     type="text"
                     id="name"
                     name="name"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.name}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
             <div className={styles.formControlLogin}>
-                <label htmlFor="release">release</label>
+                <label htmlFor="releaseDate">release</label>
                 <input
                     type="date"
-                    id="release"
-                    name="release"
-                    value={''}
-                    onChange={() => {}}
+                    id="releaseDate"
+                    name="releaseDate"
+                    value={product.releaseDate}
+                    onChange={handleChangeValue}
                 />
             </div>
             <div className={styles.formControlLogin}>
@@ -104,8 +135,8 @@ useEffect(() => {
                     type="text"
                     id="tail"
                     name="tail"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.tail}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
@@ -115,8 +146,8 @@ useEffect(() => {
                     type="text"
                     id="type"
                     name="type"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.type}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
@@ -126,8 +157,8 @@ useEffect(() => {
                     type="number"
                     id="price"
                     name="price"
-                    value={''}
-                    onChange={() => {}}
+                    value={product.price}
+                    onChange={handleChangeValue}
                     required
                 />
             </div>
